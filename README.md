@@ -10,7 +10,72 @@
 - Importing data from tables and databases, automating data export and user data entry
 - Ability to import and export dashboards to save or transfer settings between different environments or for reuse
 
-## Links
+## Resources and documentation
 
 - [https://bi.opengis.info](https://bi.opengis.info)
-- [https://git.softpro.ua/site/bi](https://git.softpro.ua/site/bi)
+
+## Install & Usage
+
+### 1. Install the package
+
+```bash
+npm install @opengis/bi
+```
+
+### 2. Import styles in your application entry or layout:
+
+```ts
+import '@opengis/bi/dist/style.css';
+```
+
+### 3. Register components
+
+```vue
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
+import '@opengis/bi/dist/style.css';
+
+const VsDashboard = defineAsyncComponent(() =>
+  import('@opengis/bi').then((m) => m.VsDashboard)
+);
+</script>
+
+<template>
+  <VsDashboard dashboard="sales" />
+</template>
+```
+
+### 4. Register editor interface
+
+```ts
+// router.config.ts
+export default [
+  {
+    path: '/bi.editor/:id?',
+    component: () => import('@opengis/bi').then((m) => m.VsEditorPage),
+  },
+  {
+    path: '/bi.dashboards',
+    component: () => import('@opengis/bi').then((m) => m.AllDashboardsPage),
+  },
+];
+```
+
+### 5. Register API
+
+```ts
+import Fastify from 'fastify';
+import biPlugin from '@opengis/bi/plugin.js';
+
+const app = Fastify();
+app.register(biPlugin, { prefix: '/api' });
+```
+
+## Contributions
+
+We welcome contributions!
+Feel free to open issues, suggest features, or submit pull requests.
+
+## Licence
+
+MIT
