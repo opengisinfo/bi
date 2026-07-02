@@ -12,6 +12,5 @@
 
 ## Links
 
-- [https://bi.softpro.ua](https://bi.softpro.ua)
 - [https://bi.opengis.info](https://bi.opengis.info)
 - [https://git.softpro.ua/site/bi](https://git.softpro.ua/site/bi)
